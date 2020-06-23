@@ -1,0 +1,68 @@
+﻿<!DOCUMENT html>
+<html>
+  <head></head>
+  <body>
+    <template id="my-paragraph">
+      <style>
+        p {
+          color: white;
+          background-color: #666;
+          padding: 5px;
+        }
+      </style>
+      <p><slot name="my-text">My paragraph</slot></p>
+    </template>
+
+    <template id="another-one">
+      <style>
+        p {color: red;}
+        span {color: green;}
+      </style>
+      <p><slot name="another-slot"></slot></p>
+      <my-paragraph>
+        <!-- it can override slot in 'my-paragraph' otherwise it'll use the default one
+        <span slot="my-text">
+          <slot name="another-my-text">my another text</slot>
+        </span>
+      </my-paragraph>
+        -->
+    </template>
+
+    <my-paragraph>
+      <span slot="my-text">Let's have some different text!</span>
+    </my-paragraph>
+
+    <another-one>
+      <span slot="another-slot">ANOTHER ONE</span>
+      <!-- <span slot="another-my-text">ANOTHER MY TEXT</span> -->
+      <span slot="my-text">MY TEXT</span>
+    </another-one>
+
+    <script>
+      customElements.define('my-paragraph',
+        class extends HTMLElement {
+          constructor() {
+            super();
+            let template = document.getElementById('my-paragraph');
+            let templateContent = template.content;
+
+            const shadowRoot = this.attachShadow({mode: 'open'})
+              .appendChild(templateContent.cloneNode(true));
+          }
+        }
+      );
+      customElements.define('another-one',
+        class extends HTMLElement {
+          constructor() {
+            super();
+            let template = document.getElementById('another-one');
+            let templateContent = template.content;
+
+            const shadowRoot = this.attachShadow({mode: 'open'})
+              .appendChild(templateContent.cloneNode(true));
+          }
+        }
+      );
+    </script>
+  </body>
+</html>
