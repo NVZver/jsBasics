@@ -1,6 +1,4 @@
-﻿const {
-  ListItem
-} = require("./list-item");
+﻿﻿const { ListItem } = require("./list-item");
 /**
  * "List" or "Linked List" is a type of data structure, and can store multiple values.
  * It's unique in how they pair data with "pointers" (link to the next item).
@@ -23,7 +21,7 @@ class List {
   }
 
   get itemsMap() {
-    return this.items.map(item => item.value).join(" -> ");
+    return this.items.map((item) => item.value).join(" -> ");
   }
 
   add(item, nextItemValue) {
@@ -70,12 +68,12 @@ class List {
 
   findPrev(itemValue) {
     return this.items.find(
-      item => item.nextItem && item.nextItem.value === itemValue
+      (item) => item.nextItem && item.nextItem.value === itemValue
     );
   }
 
   findItem(value) {
-    return this.items.find(item => item.value === value);
+    return this.items.find((item) => item.value === value);
   }
 
   isLooped(item = this.firstItem, values = [item]) {
@@ -83,7 +81,7 @@ class List {
       return false;
     }
 
-    const loopedItem = values.find(val => val === item.nextItem);
+    const loopedItem = values.find((val) => val === item.nextItem);
     if (loopedItem) {
       console.log("[looped]", `${item.value} => ${loopedItem.value}`);
       return true;
@@ -96,8 +94,10 @@ class List {
   _getItems(item = this.firstItem) {
     const result = [item];
     let currentItem = item;
-    while(currentItem.nextItem) {
-      if(result.findIndex((resItem)=>resItem === currentItem.nextItem) === -1){
+    while (currentItem.nextItem) {
+      if (
+        result.findIndex((resItem) => resItem === currentItem.nextItem) === -1
+      ) {
         result.push(currentItem.nextItem);
         currentItem = currentItem.nextItem;
       } else {
@@ -106,7 +106,6 @@ class List {
     }
     return result;
   }
-
 
   _showError(methodName, message) {
     console.error(`[Error: ${methodName}] ${message}`);
