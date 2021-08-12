@@ -9,7 +9,7 @@ function getSums(arr) {
         if (index + 1 < result.length) {
             result[index + 1] += item;
         }
-    })
+    });
     return result;
 }
 
