@@ -22,12 +22,14 @@ class SinglyLinkedList {
       this.tail = node;
     }
     this.length++;
+    return this;
   }
 }
 
 const singlyLinkedList = new SinglyLinkedList();
 
-singlyLinkedList.push('first');
-singlyLinkedList.push('second');
+singlyLinkedList
+  .push('first')
+  .push('second');
 
 console.log(singlyLinkedList);
