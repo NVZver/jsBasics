@@ -71,14 +71,32 @@ class SinglyLinkedList {
     if(id === this.length - 1) return this.tail;
     if(id < 0 || id >= this.length) return undefined;
 
-    let current=this.head;
+    let current = this.head;
     let currentId = 0;
-    while(currentId <= id){
-      current = this.head.next;
+    while(currentId < id){
+      current = current.next;
       currentId++;
     }
 
     return current;
+  }
+
+  set(id, value){
+    if(id === 0) this.unshift(value);
+    if(id === this.length) this.push(value);
+    if(id > this.length) return undefined;
+
+    const previousNode = this.get(id - 1);
+
+
+    if(!previousNode || !previousNode.next) return undefined;
+
+    const newNode = new Node(value);
+    newNode.next = previousNode.next;
+    previousNode.next = newNode;
+    this.length++;
+
+    return newNode;
   }
 
   _reset(){
@@ -91,13 +109,12 @@ const singlyLinkedList = new SinglyLinkedList();
 
 singlyLinkedList
   .push('first')
-  .unshift(1)
+  // .unshift(1)
   .push('second')
-  .unshift(0)
+  // .unshift(0)
   .push('third')
 
-
-console.log(singlyLinkedList.get(4));
+console.log(singlyLinkedList.set(2, ':)'));
 
 // console.log('pop: ', singlyLinkedList.pop());
 // console.log('pop: ', singlyLinkedList.pop());
