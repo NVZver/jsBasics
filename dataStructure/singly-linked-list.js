@@ -67,6 +67,20 @@ class SinglyLinkedList {
     return this;
   }
 
+  get(id){
+    if(id === this.length - 1) return this.tail;
+    if(id < 0 || id >= this.length) return undefined;
+
+    let current=this.head;
+    let currentId = 0;
+    while(currentId <= id){
+      current = this.head.next;
+      currentId++;
+    }
+
+    return current;
+  }
+
   _reset(){
     this.head = undefined;
     this.tail = undefined;
@@ -83,7 +97,7 @@ singlyLinkedList
   .push('third')
 
 
-console.log(singlyLinkedList);
+console.log(singlyLinkedList.get(4));
 
 // console.log('pop: ', singlyLinkedList.pop());
 // console.log('pop: ', singlyLinkedList.pop());
