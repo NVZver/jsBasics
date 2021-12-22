@@ -46,6 +46,18 @@ class SinglyLinkedList {
     return oldTail;
   }
 
+  shift(){
+    if(this.length === 0) return undefined;
+
+    const currentHead = this.head;
+    this.head = this.head.next;
+    this.length--;
+
+    if(this.length === 0) this._reset();
+
+    return currentHead;
+  }
+
   _reset(){
     this.head = undefined;
     this.tail = undefined;
@@ -61,8 +73,12 @@ singlyLinkedList
 
 console.log(singlyLinkedList);
 
-console.log('pop: ', singlyLinkedList.pop());
-console.log('pop: ', singlyLinkedList.pop());
-console.log('pop: ', singlyLinkedList.pop());
+// console.log('pop: ', singlyLinkedList.pop());
+// console.log('pop: ', singlyLinkedList.pop());
+// console.log('pop: ', singlyLinkedList.pop());
+
+console.log('shift: ', singlyLinkedList.shift());
+console.log('shift: ', singlyLinkedList.shift());
+console.log('shift: ', singlyLinkedList.shift());
 
 console.log(singlyLinkedList);
