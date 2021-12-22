@@ -91,21 +91,21 @@ class SinglyLinkedList {
   }
 
   insert(id, value){
-    if(id === 0) this.unshift(value);
-    if(id === this.length) this.push(value);
-    if(id > this.length) return undefined;
+    if(id === 0) return !!this.unshift(value);
+    if(id === this.length) return !!this.push(value);
+    if(id > this.length) return false;
 
     const previousNode = this.get(id - 1);
 
 
-    if(!previousNode || !previousNode.next) return undefined;
+    if(!previousNode || !previousNode.next) return false;
 
     const newNode = new Node(value);
     newNode.next = previousNode.next;
     previousNode.next = newNode;
     this.length++;
 
-    return newNode;
+    return true;
   }
 
   _reset(){
@@ -114,24 +114,14 @@ class SinglyLinkedList {
   }
 }
 
-const singlyLinkedList = new SinglyLinkedList();
+const list = new SinglyLinkedList();
 
-singlyLinkedList
+list
   .push('first')
   // .unshift(1)
   .push('second')
   // .unshift(0)
   .push('third')
 
-console.log(singlyLinkedList.insert(2, ':)'));
-console.log(singlyLinkedList.set(2, ':*'));
-
-// console.log('pop: ', singlyLinkedList.pop());
-// console.log('pop: ', singlyLinkedList.pop());
-// console.log('pop: ', singlyLinkedList.pop());
-
-// console.log('shift: ', singlyLinkedList.shift());
-// console.log('shift: ', singlyLinkedList.shift());
-// console.log('shift: ', singlyLinkedList.shift());
-
-// console.log(singlyLinkedList);
+console.log(list.insert(2, ':)'));
+console.log(list.set(2, ':*'));
