@@ -82,6 +82,15 @@ class SinglyLinkedList {
   }
 
   set(id, value){
+    const node = this.get(id);
+    if(node){
+      node.value = value;
+      return node;
+    }
+    return undefined;
+  }
+
+  insert(id, value){
     if(id === 0) this.unshift(value);
     if(id === this.length) this.push(value);
     if(id > this.length) return undefined;
@@ -114,7 +123,8 @@ singlyLinkedList
   // .unshift(0)
   .push('third')
 
-console.log(singlyLinkedList.set(2, ':)'));
+console.log(singlyLinkedList.insert(2, ':)'));
+console.log(singlyLinkedList.set(2, ':*'));
 
 // console.log('pop: ', singlyLinkedList.pop());
 // console.log('pop: ', singlyLinkedList.pop());
