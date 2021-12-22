@@ -7,8 +7,7 @@ class Node {
 
 class SinglyLinkedList {
   constructor(){
-    this.head = undefined;
-    this.tail = undefined;
+    this._reset();
     this.length = 0;
   }
 
@@ -24,12 +23,46 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  pop(){
+    if(!this.head) return undefined;
+
+    let current = this.head;
+
+    while(current.next && current.next.next){
+      current = current.next;
+    }
+
+    const oldTail = current.next;
+
+    current.next = undefined;
+    this.tail = current;
+    this.length--;
+
+    if(this.length === 0){
+      this._reset();
+    }
+
+    return oldTail;
+  }
+
+  _reset(){
+    this.head = undefined;
+    this.tail = undefined;
+  }
 }
 
 const singlyLinkedList = new SinglyLinkedList();
 
 singlyLinkedList
   .push('first')
-  .push('second');
+  .push('second')
+  .push('third');
+
+console.log(singlyLinkedList);
+
+console.log('pop: ', singlyLinkedList.pop());
+console.log('pop: ', singlyLinkedList.pop());
+console.log('pop: ', singlyLinkedList.pop());
 
 console.log(singlyLinkedList);
