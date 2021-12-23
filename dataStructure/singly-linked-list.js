@@ -108,6 +108,23 @@ class SinglyLinkedList {
     return true;
   }
 
+  remove(id){
+    if(id === 0) return this.shift;
+    if(id === this.length - 1) return this.pop();
+    if(id < 0 || id >= this.length) return undefined;
+
+    const previousNode = this.get(id - 1);
+
+    if(!previousNode || !previousNode.next) return undefined;
+
+    const removedNode = previousNode.next;
+    previousNode.next = removedNode.next;
+
+    this.length--;
+
+    return removedNode;
+  }
+
   _reset(){
     this.head = undefined;
     this.tail = undefined;
@@ -117,11 +134,12 @@ class SinglyLinkedList {
 const list = new SinglyLinkedList();
 
 list
+  .push('zero')
   .push('first')
   // .unshift(1)
   .push('second')
   // .unshift(0)
   .push('third')
 
-console.log(list.insert(2, ':)'));
-console.log(list.set(2, ':*'));
+console.log(list.remove(3));
+console.log(list.get(3));
