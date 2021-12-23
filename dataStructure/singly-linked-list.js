@@ -125,6 +125,32 @@ class SinglyLinkedList {
     return removedNode;
   }
 
+  reverse(){
+    // swap head and tail
+    let previous = this.head;
+    this.head = this.tail;
+    this.tail = previous;
+
+    // set initial pionts
+    let current = previous.next;
+    let next = current.next;
+
+    // revese
+    while(next){
+      const following = next.next;
+      next.next = current;
+      current.next = previous;
+
+      previous = current;
+      current = next;
+      next = following;
+    }
+
+    this.tail.next = undefined;
+
+    return this;
+  }
+
   _reset(){
     this.head = undefined;
     this.tail = undefined;
@@ -141,5 +167,4 @@ list
   // .unshift(0)
   .push('third')
 
-console.log(list.remove(3));
-console.log(list.get(3));
+console.log(list.reverse());
