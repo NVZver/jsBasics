@@ -31,10 +31,31 @@ class DoublyLinkedListNode {
 
     return this;
   }
+
+  pop(){
+    if(this.length === 0) return undefined;
+
+    const popedNode = this.tail;
+
+    if(this.length === 1) {
+      this.head = undefined;
+      this.tail = undefined;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = undefined;
+      popedNode.prev = undefined;
+    }
+
+    this.length--;
+
+    return popedNode;
+  }
 }
 
 const list = new DoublyLinkedListNode();
 
 list.push('first').push('second').push('third');
 
-console.log(list);
+console.log('List: ', list);
+
+console.log('Pop: ', list.pop(), list)
