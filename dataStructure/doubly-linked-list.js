@@ -96,6 +96,15 @@ class DoublyLinkedListNode {
       : this._getFromEnd(id);
   }
 
+  set(id, value){
+    const node = this.get(id);
+    if(node){
+      node.value = value;
+      return true;
+    }
+    return false;
+  }
+
   _getFromStart(id){
     let current = 0;
     let result = this.head;
@@ -141,7 +150,8 @@ console.log(list.get(0).value);
 console.log(list.get(3).value);
 console.log(list.get(5).value);
 console.log(list.get(7).value);
-console.log(list.get(9).value)
+console.log(list.set(9, 'ten'));
+console.log(list.get(9).value);
 console.log(list.get(10));
 
 // console.log('Pop: ', list.pop(), list)
