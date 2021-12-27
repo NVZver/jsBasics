@@ -9,8 +9,7 @@ class Node {
 
 class DoublyLinkedListNode {
   constructor(){
-    this.head = undefined;
-    this.tail = undefined;
+    this._resetPointers();
     this.length = 0;
   }
 
@@ -38,8 +37,7 @@ class DoublyLinkedListNode {
     const popedNode = this.tail;
 
     if(this.length === 1) {
-      this.head = undefined;
-      this.tail = undefined;
+      this._resetPointers();
     } else {
       this.tail = this.tail.prev;
       this.tail.next = undefined;
@@ -50,6 +48,29 @@ class DoublyLinkedListNode {
 
     return popedNode;
   }
+
+  shift(){
+    if(this.length === 0) return undefined;
+
+    const shiftedNode = this.head;
+
+    if(this.length === 1){
+      this._resetPointers();
+    } else {
+      this.head = this.head.next;
+      this.head.prev = undefined;
+      shiftedNode.next = undefined;
+    }
+
+    this.length--;
+
+    return shiftedNode;
+  }
+
+  _resetPointers(){
+    this.head = undefined;
+    this.tail = undefined;
+  }
 }
 
 const list = new DoublyLinkedListNode();
@@ -58,4 +79,5 @@ list.push('first').push('second').push('third');
 
 console.log('List: ', list);
 
-console.log('Pop: ', list.pop(), list)
+// console.log('Pop: ', list.pop(), list)
+console.log('Shift: ', list.shift(), list)
