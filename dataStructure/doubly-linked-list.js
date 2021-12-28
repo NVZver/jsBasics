@@ -15,7 +15,7 @@ class DoublyLinkedListNode {
 
   push(value){
 
-    const node = new Node(value);
+    const node = this._createNode(value);
 
     if(this.length === 0){
       this.head = node;
@@ -68,7 +68,7 @@ class DoublyLinkedListNode {
   }
 
   unshift(value){
-    const node = new Node(value);
+    const node = this._createNode(value);
 
     if(this.length === 0){
       this.tail = node;
@@ -105,6 +105,36 @@ class DoublyLinkedListNode {
     return false;
   }
 
+  insert(id, value){
+    if(id === 0) return !!this.unshift(value);
+    if(id === this.length) return !!this.push(value);
+    if(id < 0 || id > this.length) return false;
+
+    const node = this.get(id);
+
+    if(node){
+      const newNode = this._createNode(value);
+
+      const prev = node.prev;
+
+      node.prev = newNode;
+      prev.next = newNode;
+
+      newNode.prev = prev;
+      newNode.next = node;
+
+      this.length++;
+
+      return true;
+    }
+
+    return false;
+  }
+
+  _createNode(val){
+    return new Node(val);
+  }
+
   _getFromStart(id){
     let current = 0;
     let result = this.head;
@@ -120,7 +150,6 @@ class DoublyLinkedListNode {
   _getFromEnd(id){
     let current = this.length-1;
     let result = this.tail;
-
     while(current !== id){
       result = result.prev;
       current--;
@@ -143,16 +172,9 @@ for(let i=0; i < 10; i++){
   list.push(i);
 }
 
-console.log(list)
+list.insert(9, '8.5');
+console.log(list.get(8).value, list.get(9).value, list.get(10).value);
 
-
-console.log(list.get(0).value);
-console.log(list.get(3).value);
-console.log(list.get(5).value);
-console.log(list.get(7).value);
-console.log(list.set(9, 'ten'));
-console.log(list.get(9).value);
-console.log(list.get(10));
 
 // console.log('Pop: ', list.pop(), list)
 // console.log('Shift: ', list.shift(), list)
