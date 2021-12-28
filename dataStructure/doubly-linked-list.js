@@ -112,23 +112,21 @@ class DoublyLinkedListNode {
 
     const node = this.get(id);
 
-    if(node){
-      const newNode = this._createNode(value);
+    if(!node) return false;
 
-      const prev = node.prev;
+    const newNode = this._createNode(value);
 
-      node.prev = newNode;
-      prev.next = newNode;
+    const prev = node.prev;
 
-      newNode.prev = prev;
-      newNode.next = node;
+    node.prev = newNode;
+    prev.next = newNode;
 
-      this.length++;
+    newNode.prev = prev;
+    newNode.next = node;
 
-      return true;
-    }
+    this.length++;
 
-    return false;
+    return true;
   }
 
   _createNode(val){
