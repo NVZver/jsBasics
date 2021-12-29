@@ -152,6 +152,27 @@ class DoublyLinkedListNode {
     return node;
   }
 
+  reverse(){
+    const tail = this.tail;
+    this.tail = this.head;
+    this.head = tail;
+
+    let current = this.head;
+
+    while(current){
+      const prev = current.next;
+      const next = current.prev;
+      current.prev = prev;
+      current.next = next;
+      current = next;
+    }
+
+    this.tail.next = undefined;
+    this.head.prev = undefined;
+
+    return this;
+  }
+
   _createNode(value){
     return new Node(value);
   }
@@ -193,11 +214,15 @@ for(let i=0; i < 10; i++){
   list.push(i);
 }
 
-list.insert(9, '8.5');
-console.log(list.get(8).value, list.get(9).value, list.get(10).value);
-console.log(list.remove(9));
-console.log(list.get(8).value, list.get(9).value, list.length);
+// for(let i=0; i < list.length; i++){
+//   console.log(list.get(i).value);
+// }
 
+console.log(list.reverse());
 
-// console.log('Pop: ', list.pop(), list)
-// console.log('Shift: ', list.shift(), list)
+for(let i=0; i < list.length; i++){
+  console.log(list.get(i).value);
+}
+
+console.log('Pop: ', list.pop(), list)
+console.log('Shift: ', list.shift(), list)
