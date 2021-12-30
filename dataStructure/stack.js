@@ -1,17 +1,42 @@
+/**
+ * Node.
+ * An item of Stack
+ */
 class Node{
+  /**
+   * Constructor
+   * @param {*} value
+   */
   constructor(value){
     this.value = value;
     this.next = undefined;
   }
 }
 
+/**
+ * Stack.
+ * LIFO data structure where the last value in is
+ * always the first one out.
+ */
 class Stack{
+  /**
+   * Constructor
+   */
   constructor(){
     this.first = undefined;
     this.last = undefined;
     this.size = 0;
   }
 
+  /**
+   * Pushes new value to the stack.
+   * Implementation of `unshift` of SingleLinkedList
+   *
+   * BigO: O(1)
+   *
+   * @param {*} value
+   * @returns size
+   */
   push(value){
     const newNode = new Node(value);
     if(this.size === 0){
@@ -25,6 +50,14 @@ class Stack{
     return ++this.size;
   }
 
+  /**
+   * Pops out the last added Node.
+   * Implementation of `shift` of SingleLinkedList
+   *
+   * BigO: O(1)
+   *
+   * @returns Node
+   */
   pop(){
     if(this.size === 0) return undefined;
 
