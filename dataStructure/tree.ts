@@ -23,6 +23,7 @@ class BinarySearchTree{
       let currentNode: TreeNode | undefined = this.root;
 
       while(currentNode){
+        if(value === currentNode.value) return currentNode;
         if(value < currentNode.value){
           if(currentNode.left){
             currentNode = currentNode.left;
