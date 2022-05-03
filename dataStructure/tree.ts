@@ -30,11 +30,13 @@ class BinarySearchTree{
             currentNode.left = node;
             currentNode = undefined;
           }
-        } else if(currentNode.right){
-          currentNode = currentNode.right;
-        } else {
-          currentNode.right = node;
-          currentNode = undefined;
+        } else if(value > currentNode.value){
+          if(currentNode.right){
+            currentNode = currentNode.right;
+          } else {
+            currentNode.right = node;
+            currentNode = undefined;
+          }
         }
       }
     }
