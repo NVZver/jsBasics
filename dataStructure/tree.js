@@ -12,6 +12,19 @@ class BinarySearchTree{
   root;
   constructor(){ }
 
+  search(value){
+    if(!this.root) return undefined;
+    if(this.root.value === value) return this.root;
+
+    let current = value < this.root ? this.root.left : this.root.right;
+    while(current){
+      if(value === current.value) return current;
+      current = value < current.value ? current.left : current.right;
+    }
+
+    return undefined;
+  }
+
   insert(value){
     const node = new Node(value);
   
@@ -49,4 +62,4 @@ tree.insert(5);
 tree.insert(15);
 tree.insert(12);
 
-console.log(tree.root);
+console.log(tree.search(153));
