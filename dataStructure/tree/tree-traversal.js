@@ -58,6 +58,7 @@ class Tree {
     this.root = root;
   }
 
+  // takes lots of space
   getValuesBreadthFirst() {
     const queue = new Queue(); // Queue is here just for practice. You can use Array instead;
     queue.enqueue(this.root);
@@ -70,6 +71,11 @@ class Tree {
     }
     return values;
   }
+
+  /**
+   * Can be used to "export" a tree tructure
+   * so that it is easily reconstructured or copied
+   */
   getValuesDeepFirstPreOrder() {
     const values = [];
 
@@ -85,6 +91,7 @@ class Tree {
 
     return values;
   }
+
   getValuesDeepFirstPostOrder() {
     const values = [];
 
@@ -100,6 +107,11 @@ class Tree {
 
     return values;
   }
+
+  /**
+   * Commonly used with BST's
+   * Output is a sorted array
+   */
   getValuesDeepFirstInOrder() {
     const values = [];
 
