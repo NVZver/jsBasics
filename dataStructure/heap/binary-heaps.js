@@ -110,8 +110,6 @@ class PriorityQueue extends BinaryHeapBase {
     const rightId = this.getChildRight(id);
     const rightVal = this.values[rightId] || new Node('Infinity', Infinity);
 
-    console.log(val, leftVal, rightVal);
-
     if (val.priority < leftVal.priority && val.priority < rightVal.priority) return;
 
     if (leftVal.priority < rightVal.priority) {
@@ -128,7 +126,6 @@ class PriorityQueue extends BinaryHeapBase {
     const val = this.values[id];
     const parentId = this.getParent(id);
     const parent = this.values[parentId];
-    console.log(val, parent);
     if (id === 0 || val.priority > parent.priority) return;
     this.swapValues(id, parentId);
     this.bubbleUp(parentId);
@@ -144,6 +141,6 @@ const priorities = [1, 3, 5, 12, 33, 8, 10];
 const nodes = priorities.map(item => new Node(item, item));
 const queue = new PriorityQueue(nodes);
 queue.enqueue('bla', 0);
-console.log(queue.values.map(item => item.priority));
-queue.dequeue();
-console.log(queue.values.map(item => item.priority));
+while (queue.values.length) {
+  console.log(queue.dequeue());
+}
