@@ -21,7 +21,7 @@ function expect(value){
             if(value !== testValue){
                 throw new Error(`Expected ${value} to be ${testValue}`);
             }
-        }
+        },
     }
 }
 
